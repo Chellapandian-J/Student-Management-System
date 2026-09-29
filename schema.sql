@@ -16,3 +16,17 @@ CREATE TABLE attendance (
     FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
     UNIQUE (student_id, attendance_date)
 );
+CREATE TABLE subjects(
+    subject_id INT AUTO_INCREMENT PRIMARY KEY,
+    subject_name VARCHAR(100) NOT NULL UNIQUE,
+    department VARCHAR(50) NOT NULL
+);
+CREATE TABLE marks (
+    mark_id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    subject_id INT NOT NULL,
+    marks INT NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
+    FOREIGN KEY (subject_id) REFERENCES subjects(subject_id) ON DELETE CASCADE,
+    UNIQUE (student_id, subject_id)
+);
